@@ -124,7 +124,9 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
 </div>
 
 
-
+        {/* Date */}
+        <div className="text-xs tracking-widest text-muted-foreground uppercase">{formattedDate}</div>
+      </div>
 
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
