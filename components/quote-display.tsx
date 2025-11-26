@@ -62,13 +62,7 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
           </h1>
           <p className="text-sm md:text-base text-muted-foreground tracking-widest uppercase">Every Day Quote</p>
         </div>
-        <Link
-          href="/bookmarks"
-          className="absolute right-4 md:right-8 top-4 md:top-8 p-2 hover:bg-secondary rounded-lg transition-colors"
-          title="View bookmarks"
-        >
-          <Bookmark size={24} className="text-primary" />
-        </Link>
+       
       </div>
 
       {/* Quote Card */}
@@ -86,10 +80,7 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <BookOpen size={18} className="text-primary flex-shrink-0" />
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Quote ID</p>
-                <p className="text-foreground font-serif">{quote.id}</p>
-              </div>
+          
             </div>
             <div className="h-px bg-border/20"></div>
             <div className="flex items-center justify-between">
