@@ -62,7 +62,7 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
           </h1>
           <p className="text-sm md:text-base text-muted-foreground tracking-widest uppercase">Every Day Quote</p>
         </div>
-       
+
       </div>
 
       {/* Quote Card */}
@@ -76,59 +76,59 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
         </div>
 
         {/* Source Section */}
-        <div className="mb-8 md:mb-10 bg-background/50 rounded-lg p-6 border border-border/30">
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <BookOpen size={18} className="text-primary flex-shrink-0" />
-          
-            </div>
-            <div className="h-px bg-border/20"></div>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">Page</p>
-                <p className="text-foreground font-serif">{quote.page}</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">Book</p>
-                <p className="text-foreground font-serif">{quote.book}</p>
-              </div>
-              <a
-  href={`/pdfjs/web/viewer.html?file=/${quote.book}.pdf#search=${encodeURIComponent(
-    quote.quote
-  )}&highlight=all&phrase=true`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg transition-colors text-sm font-medium"
->
-                <BookOpen size={16} />
-                View in PDF
-              </a>
-            </div>
-          </div>
-        </div>
+       
 
-        {/* Date */}
-        <div className="text-xs tracking-widest text-muted-foreground uppercase">{formattedDate}</div>
+        <div className="mb-8 md:mb-10 bg-background/50 rounded-lg p-6 border border-border/30">
+  <div className="flex flex-col gap-4">
+
+    {/* Header */}
+    <div className="flex items-center gap-3">
+      <BookOpen size={18} className="text-primary flex-shrink-0" />
+    </div>
+
+    <div className="h-px bg-border/20" />
+
+    {/* Content */}
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
+
+      <div className="flex-1">
+        <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">
+          Page
+        </p>
+        <p className="text-foreground font-serif">{quote.page}</p>
       </div>
+
+      <div className="flex-1">
+        <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">
+          Book
+        </p>
+        <p className="text-foreground font-serif break-all">{quote.book}</p>
+      </div>
+
+      {/* Button */}
+      <a
+        href={`/pdfjs/web/viewer.html?file=/${quote.book}.pdf#search=${encodeURIComponent(
+          quote.quote
+        )}&highlight=all&phrase=true`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary/10 
+                   hover:bg-primary/20 text-primary rounded-lg transition-colors text-sm font-medium"
+      >
+        <BookOpen size={16} />
+        View in PDF
+      </a>
+
+    </div>
+  </div>
+</div>
+
+
+
 
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <button
-          onClick={handleBookmarkToggle}
-          disabled={bookmarkLoading}
-          className={`group relative inline-flex items-center gap-2 px-8 py-3 rounded-full font-medium tracking-wide transition-all duration-300 ${
-            bookmarked
-              ? "bg-primary text-primary-foreground hover:bg-primary/90"
-              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-          } disabled:opacity-50`}
-        >
-          <Bookmark
-            size={18}
-            className={`transition-transform ${bookmarkLoading ? "animate-pulse" : ""}`}
-            fill={bookmarked ? "currentColor" : "none"}
-          />
-          <span>{bookmarked ? "Bookmarked" : "Bookmark"}</span>
-        </button>
+
 
         <button
           onClick={handleRefresh}
