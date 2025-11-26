@@ -122,10 +122,6 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
     </div>
   </div>
 </div>
-
-
-        {/* Date */}
-        <div className="text-xs tracking-widest text-muted-foreground uppercase"></div>
       </div>
 
       {/* Action Buttons */}

@@ -150,7 +150,7 @@ export default function Home() {
                 ))
               )}
             </select>
-            <p className="w-full text-sm font-medium text-muted-foreground text-center" >Quotes read : {totalRequests}</p>
+            <p className="w-full text-xs  mt-2 font-medium text-muted-foreground text-center" >Quotes Read : {totalRequests} Times</p>
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 // <CHANGE> Updated metadata for the quote app
 export const metadata: Metadata = {
-  title: "Madhyasth Darshan - Every Day Quote",
+  title: "Madhyasth Darshan - Quote On The Go",
   description: "Inspirational Hindi quotes for reflection and wisdom. Discover a new philosophical quote every day.",
   generator: "v0.app",
   icons: {
