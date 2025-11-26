@@ -125,7 +125,7 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
 
 
         {/* Date */}
-        <div className="text-xs tracking-widest text-muted-foreground uppercase">{formattedDate}</div>
+        <div className="text-xs tracking-widest text-muted-foreground uppercase"></div>
       </div>
 
       {/* Action Buttons */}
