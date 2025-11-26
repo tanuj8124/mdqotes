@@ -26,6 +26,8 @@ export default function Home() {
   const [books, setBooks] = useState<Book[]>([])
   const [selectedBook, setSelectedBook] = useState<string>("all")
   const [loadingBooks, setLoadingBooks] = useState(true)
+  const [totalRequests, setTotalRequests] = useState<number>(0)
+
 
   const API_BASE_URL = "https://hindi-quote-api.onrender.com"
 
@@ -44,6 +46,20 @@ export default function Home() {
     }
     fetchBooks()
   }, [])
+  useEffect(() => {
+  const fetchStats = async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/stats/requests`)
+      const data = await res.json()
+      setTotalRequests(data.total_requests)
+    } catch (error) {
+      console.error("Error fetching stats:", error)
+    }
+  }
+
+  fetchStats()
+}, [])
+
 
   const fetchQuote = async (bookSlug?: string) => {
     setLoading(true)
@@ -134,9 +150,12 @@ export default function Home() {
                 ))
               )}
             </select>
+            <p className="w-full text-sm font-medium text-muted-foreground text-center" >Quotes read : {totalRequests}</p>
           </div>
         </div>
       </div>
+      
+
 
       {/* Floating Refresh Button */}
       <button

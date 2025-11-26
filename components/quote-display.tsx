@@ -60,7 +60,7 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
           <h1 className="text-3xl md:text-5xl font-light text-foreground mb-2 tracking-tight font-serif">
             Madhyasth Darshan
           </h1>
-          <p className="text-sm md:text-base text-muted-foreground tracking-widest uppercase">Every Day Quote</p>
+          <p className="text-sm md:text-base text-muted-foreground tracking-widest uppercase">Quotes On The GO</p>
         </div>
 
       </div>
