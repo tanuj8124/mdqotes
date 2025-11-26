@@ -131,7 +131,7 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
       {/* Action Buttons */}
       <div className="fixed bottom-0 left-0 w-full z-50 flex flex-col sm:flex-row items-center justify-center gap-4 bg-white/80 backdrop-blur p-4">
 
-
+{/* 
         <button
           onClick={handleRefresh}
           disabled={isRefreshing}
@@ -142,7 +142,7 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
             className={`transition-transform duration-300 ${isRefreshing ? "animate-spin" : "group-hover:rotate-180"}`}
           />
           <span>New Quote</span>
-        </button>
+        </button> */}
       </div>
 
       {/* Footer Note */}
