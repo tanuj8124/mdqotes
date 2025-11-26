@@ -1,13 +1,14 @@
+// Updated Home component with floating refresh button
 "use client"
 import { useEffect, useState } from "react"
 import QuoteDisplay from "@/components/quote-display"
 import { Spinner } from "@/components/ui/spinner"
+import { RotateCcw } from "lucide-react"
 
 interface Quote {
   id: number
   text: string
   page: number
- 
   book?: string
 }
 
@@ -28,7 +29,6 @@ export default function Home() {
 
   const API_BASE_URL = "https://hindi-quote-api.onrender.com"
 
-  // Fetch available books on mount
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -51,7 +51,6 @@ export default function Home() {
       const endpoint = bookSlug && bookSlug !== "all" 
         ? `${API_BASE_URL}/quote/book/${bookSlug}`
         : `${API_BASE_URL}/quote`
-      
       const response = await fetch(endpoint)
       if (!response.ok) throw new Error("Failed to fetch quote")
       const data = await response.json()
@@ -76,12 +75,9 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/5 flex items-center justify-center p-4 md:p-8">
+    <main className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/5 flex items-center justify-center p-4 md:p-8 relative">
       <div className="w-full max-w-3xl">
 
-        {/* Book Selection Dropdown */}
-        
-        {/* Quote Display */}
         {loading ? (
           <div className="flex flex-col items-center justify-center gap-6 py-20">
             <Spinner className="w-8 h-8" />
@@ -111,6 +107,7 @@ export default function Home() {
             </button>
           </div>
         )}
+
         <div className="mb-6 flex justify-center">
           <div className="w-full max-w-md">
             <label 
@@ -140,6 +137,14 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Floating Refresh Button */}
+      <button
+        onClick={handleRefresh}
+        className="fixed bottom-5 right-5 bg-primary text-primary-foreground p-4 rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center"
+      >
+        <RotateCcw className="w-6 h-6" />
+      </button>
     </main>
   )
 }
