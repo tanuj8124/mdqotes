@@ -129,7 +129,7 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
       </div>
 
       {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div className="fixed bottom-0 left-0 w-full z-50 flex flex-col sm:flex-row items-center justify-center gap-4 bg-white/80 backdrop-blur p-4">
 
 
         <button
