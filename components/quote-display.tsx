@@ -9,7 +9,7 @@ interface Quote {
   id: number
   quote: string
   page: number
-  pdf_link: string
+  book: string
 }
 
 interface QuoteDisplayProps {
@@ -94,11 +94,15 @@ export default function QuoteDisplay({ quote, onRefresh, isBookmarked = false }:
             <div className="h-px bg-border/20"></div>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">Book Page</p>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">Page</p>
                 <p className="text-foreground font-serif">{quote.page}</p>
               </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">Book</p>
+                <p className="text-foreground font-serif">{quote.book}</p>
+              </div>
               <a
-  href={`/pdfjs/web/viewer.html?file=/book.pdf#search=${encodeURIComponent(
+  href={`/pdfjs/web/viewer.html?file=/${quote.book}.pdf#search=${encodeURIComponent(
     quote.quote
   )}&highlight=all&phrase=true`}
   target="_blank"
