@@ -274,6 +274,7 @@ export function findBookBySlug(slug: string): string | null {
  * Load stats from file
  */
 export function loadStats(): Stats {
+  if (statsCache) return statsCache;
   try {
     if (fs.existsSync(STATS_FILE)) {
       const data = fs.readFileSync(STATS_FILE, 'utf8');
@@ -305,15 +306,29 @@ export function saveStats(stats: Stats): void {
   }
 }
 
+// Global stats cache
+let statsCache: Stats | null = null;
+let lastSaveTime = 0;
+const SAVE_INTERVAL_MS = 5000;
+
 /**
  * Increment request stats
  */
 export function incrementStats(): Stats {
-  const stats = loadStats();
-  stats.total_requests++;
-  stats.quote_requests++;
-  saveStats(stats);
-  return stats;
+  if (!statsCache) {
+    statsCache = loadStats();
+  }
+
+  statsCache.total_requests++;
+  statsCache.quote_requests++;
+
+  const now = Date.now();
+  if (now - lastSaveTime > SAVE_INTERVAL_MS) {
+    saveStats(statsCache);
+    lastSaveTime = now;
+  }
+
+  return statsCache;
 }
 
 /**

@@ -218,9 +218,6 @@ export default function Home() {
               <p className="text-muted-foreground text-sm tracking-wide mb-1">
                 Finding quote...
               </p>
-              <p className="text-xs text-muted-foreground/70 tracking-widest uppercase">
-                It may take up to 1 minute
-              </p>
             </div>
           </div>
         ) : quote ? (
