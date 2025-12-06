@@ -110,7 +110,7 @@ export default function QuoteDisplay({ quote, prevQuote, nextQuote, onRefresh, o
   return (
     <div className="animate-in fade-in duration-700">
       {/* Header with Navigation */}
-      <div className="flex items-center justify-between mb-12 md:mb-16">
+      <div className="flex items-center justify-between mb-6 md:mb-8">
         <div className="text-center flex-1">
           <h1 className="text-3xl md:text-5xl font-light text-foreground mb-2 tracking-tight font-serif">
             Madhyasth Darshan
@@ -120,46 +120,7 @@ export default function QuoteDisplay({ quote, prevQuote, nextQuote, onRefresh, o
 
       </div>
 
-      {/* Search Box */}
-      <div className="relative max-w-md mx-auto mb-8">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
-          <input
-            type="text"
-            placeholder="Search quotes by keyword..."
-            value={searchQuery}
-            onChange={handleSearch}
-            className="w-full pl-10 pr-4 py-2 rounded-full border border-border bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => {
-                setSearchQuery("")
-                setShowResults(false)
-              }}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          )}
-        </div>
 
-        {/* Search Results Dropdown */}
-        {showResults && searchResults.length > 0 && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden max-h-60 overflow-y-auto">
-            {searchResults.map((result) => (
-              <button
-                key={result.id}
-                onClick={() => handleSelectResult(result)}
-                className="w-full text-left px-4 py-3 hover:bg-muted/50 transition-colors border-b border-border/50 last:border-0"
-              >
-                <p className="text-sm text-foreground line-clamp-1 font-medium">"{result.quote}"</p>
-                <p className="text-xs text-muted-foreground mt-1">{result.book}</p>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
 
       {/* Quote Card */}
       <div className="bg-card border border-border/50 rounded-2xl p-8 md:p-12 shadow-sm hover:shadow-md transition-shadow duration-300 mb-8 relative flex gap-4 md:gap-8">
@@ -177,7 +138,7 @@ export default function QuoteDisplay({ quote, prevQuote, nextQuote, onRefresh, o
                   <ChevronUp className="w-3 h-3 text-muted-foreground/50 group-hover:text-primary transition-colors" />
                   <p className="text-xs text-muted-foreground/50 uppercase tracking-wider group-hover:text-primary transition-colors">Previous</p>
                 </div>
-                <p className="text-sm text-muted-foreground/60 leading-relaxed line-clamp-2 italic group-hover:text-foreground/80 transition-colors">
+                <p className="text-xs text-muted-foreground/60 leading-relaxed line-clamp-2 italic group-hover:text-foreground/80 transition-colors">
                   "{prevQuote.quote}"
                 </p>
               </button>
@@ -198,7 +159,7 @@ export default function QuoteDisplay({ quote, prevQuote, nextQuote, onRefresh, o
                   <ChevronDown className="w-3 h-3 text-muted-foreground/50 group-hover:text-primary transition-colors" />
                   <p className="text-xs text-muted-foreground/50 uppercase tracking-wider group-hover:text-primary transition-colors">Next</p>
                 </div>
-                <p className="text-sm text-muted-foreground/60 leading-relaxed line-clamp-2 italic group-hover:text-foreground/80 transition-colors">
+                <p className="text-xs text-muted-foreground/60 leading-relaxed line-clamp-2 italic group-hover:text-foreground/80 transition-colors">
                   "{nextQuote.quote}"
                 </p>
               </button>
@@ -215,7 +176,13 @@ export default function QuoteDisplay({ quote, prevQuote, nextQuote, onRefresh, o
 
               {/* Header */}
               <div className="flex items-center justify-between gap-3">
-                <BookOpen size={18} className="text-primary flex-shrink-0" />
+                {/* here */}
+                <div className="flex-1">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">
+                    Page
+                  </p>
+                  <p className="text-foreground font-serif">{quote.page}</p>
+                </div>
                 <button
                   onClick={handleCopyQuote}
                   className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary rounded-md transition-colors text-xs font-medium"
@@ -240,12 +207,7 @@ export default function QuoteDisplay({ quote, prevQuote, nextQuote, onRefresh, o
               {/* Content */}
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
 
-                <div className="flex-1">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">
-                    Page
-                  </p>
-                  <p className="text-foreground font-serif">{quote.page}</p>
-                </div>
+
 
                 <div className="flex-1">
                   <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">
@@ -305,6 +267,48 @@ export default function QuoteDisplay({ quote, prevQuote, nextQuote, onRefresh, o
       </div>
 
 
+
+
+      {/* Search Box - Moved to bottom */}
+      <div className="relative max-w-md mx-auto mb-8">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
+          <input
+            type="text"
+            placeholder="Search quotes by keyword..."
+            value={searchQuery}
+            onChange={handleSearch}
+            className="w-full pl-10 pr-4 py-2 rounded-full border border-border bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => {
+                setSearchQuery("")
+                setShowResults(false)
+              }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
+        </div>
+
+        {/* Search Results Dropdown */}
+        {showResults && searchResults.length > 0 && (
+          <div className="absolute bottom-full left-0 right-0 mb-2 bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden max-h-60 overflow-y-auto">
+            {searchResults.map((result) => (
+              <button
+                key={result.id}
+                onClick={() => handleSelectResult(result)}
+                className="w-full text-left px-4 py-3 hover:bg-muted/50 transition-colors border-b border-border/50 last:border-0"
+              >
+                <p className="text-sm text-foreground line-clamp-1 font-medium">"{result.quote}"</p>
+                <p className="text-xs text-muted-foreground mt-1">{result.book}</p>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* Footer Note */}
       <div className="text-center mt-12 md:mt-16 text-xs text-muted-foreground tracking-wide"></div>
