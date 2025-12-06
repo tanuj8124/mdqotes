@@ -5,6 +5,12 @@ import { useState } from "react"
 import Link from "next/link"
 import { bookmarkQuote, removeBookmark } from "@/lib/bookmarks"
 
+interface Book {
+  name: string
+  slug: string
+  quote_count: number
+}
+
 interface Quote {
   id: number
   quote: string
@@ -21,9 +27,24 @@ interface QuoteDisplayProps {
   onPrevious: () => void
   onQuoteSelect?: (quote: Quote) => void
   isBookmarked?: boolean
+  books?: Book[]
+  selectedBook?: string
+  onBookChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
-export default function QuoteDisplay({ quote, prevQuote, nextQuote, onRefresh, onNext, onPrevious, onQuoteSelect, isBookmarked = false }: QuoteDisplayProps) {
+export default function QuoteDisplay({
+  quote,
+  prevQuote,
+  nextQuote,
+  onRefresh,
+  onNext,
+  onPrevious,
+  onQuoteSelect,
+  isBookmarked = false,
+  books = [],
+  selectedBook = "all",
+  onBookChange
+}: QuoteDisplayProps) {
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [bookmarked, setBookmarked] = useState(isBookmarked)
   const [bookmarkLoading, setBookmarkLoading] = useState(false)
@@ -209,11 +230,24 @@ export default function QuoteDisplay({ quote, prevQuote, nextQuote, onRefresh, o
 
 
 
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">
                     Book
                   </p>
-                  <p className="text-foreground font-serif break-all">{quote.book}</p>
+                  {onBookChange && books.length > 0 ? (
+                    <select
+                      value={selectedBook === "all" ? (books.find(b => b.name === quote.book)?.slug || "all") : selectedBook}
+                      onChange={onBookChange}
+                      className="w-full bg-transparent border-none p-0 text-foreground font-serif text-base focus:ring-0 cursor-pointer hover:underline truncate"
+                    >
+                      <option value="all">All Books</option>
+                      {books.map((b) => (
+                        <option key={b.slug} value={b.slug}>{b.name}</option>
+                      ))}
+                    </select>
+                  ) : (
+                    <p className="text-foreground font-serif break-all">{quote.book}</p>
+                  )}
                 </div>
 
                 {/* Button */}

@@ -230,6 +230,9 @@ export default function Home() {
             onPrevious={handlePrevious}
             onQuoteSelect={handleQuoteSelect}
             isBookmarked={bookmarkedIds.includes(quote.id)}
+            books={books}
+            selectedBook={selectedBook}
+            onBookChange={handleBookChange}
           />
         ) : (
           <div className="text-center py-20">
@@ -245,31 +248,6 @@ export default function Home() {
 
         <div className="mb-6 flex justify-center">
           <div className="w-full max-w-md">
-            <label
-              htmlFor="book-select"
-              className="block text-sm font-medium text-muted-foreground mb-2 text-center"
-            >
-              Select Book
-            </label>
-            <select
-              id="book-select"
-              value={selectedBook}
-              onChange={handleBookChange}
-              disabled={loadingBooks}
-              className="w-full px-4 py-3 rounded-lg border border-border bg-background/50 backdrop-blur-sm text-foreground shadow-sm hover:border-primary/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <option value="all">🎲 Random (All Books)</option>
-              {loadingBooks ? (
-                <option disabled>Loading books...</option>
-              ) : (
-                books.map((book) => (
-                  <option key={book.slug} value={book.slug}>
-                    📖 {book.name} ({book.quote_count} quotes)
-                  </option>
-                ))
-              )}
-            </select>
-
             {/* Page Range Slider */}
             {selectedBook !== "all" && bookPageLimits && (
               <div className="mt-6 px-2 animate-in fade-in slide-in-from-top-2 duration-300">
